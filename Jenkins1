@@ -1,26 +1,30 @@
+currentBuild.displayName = "online-shopping-#"+currentBuild.number
+
 pipeline{
-      agent any
-          stages{
-             stage ('checkout'){
-             steps{
+    agent any
+    
+   
+    stages{
+        stage("Git Checkout"){
+            steps{
                 git 'https://github.com/nh00/PetClinic.git'
-             }
-          stage ('build'){
-          steps{
-              sh 'mvn clean package'
-             }
-          }   
-           }
+            }
         }
-      }
-
-
-
-
-
-
-
-
-
-
+        stage("Maven Build"){
+            steps{
+                sh "mvn clean package"
+                
+            }
+        }
+        stage("deploy-dev"){
+            steps{
+                
+                sh """
+                    ech0 "hello deploy"
+                """
+            }
+            
+            }
+        }
+    }
 
