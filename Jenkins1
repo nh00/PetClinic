@@ -20,7 +20,7 @@ pipeline{
             steps{
                 
                 sh """
-                    ech0 "hello deploy"
+                    echo 'hello deploy'
                 """
             }
             
