@@ -23,9 +23,9 @@ pipeline{
     // some block
     
              sh """
-                    scp -o StrictHostKeyChecking=no target/mypet.war ubuntu@172.31.40.185:/opt/tomcat/
-                    ssh ubuntu@172.31.40.185 /opt/tomcat/bin/shutdown.sh
-                    ssh ubuntu@172.31.40.185 /opt/tomcat/bin/shart.sh
+                    scp -o StrictHostKeyChecking=no target/mypet.war ubuntu@172.31.40.185:/opt/apache-tomcat-8.5.51/webapps
+                    ssh ubuntu@172.31.40.185 /opt/apache-tomcat-8.5.51/bin/shutdown.sh
+                    ssh ubuntu@172.31.40.185 /opt/apache-tomcat-8.5.51/bin/startup.sh
                 """
     }
                
