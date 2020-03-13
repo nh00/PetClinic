@@ -13,15 +13,22 @@ pipeline{
         stage("Maven Build"){
             steps{
                 sh "mvn clean package"
+                sh "mv target/*.war target/mypet.war"
                 
             }
         }
         stage("deploy-dev"){
             steps{
-                
-                sh """
-                    echo 'hello deploy'
+                sshagent(['tomcat']) {
+    // some block
+    
+             sh """
+                    scp -o StrictHostKeyChecking=no target/mypet.war ubuntu@172.31.40.185:/opt/tomcat/
+                    ssh ubuntu@172.31.40.185 /opt/tomcat/bin/shutdown.sh
+                    ssh ubuntu@172.31.40.185 /opt/tomcat/bin/shart.sh
                 """
+    }
+               
             }
             
             }
